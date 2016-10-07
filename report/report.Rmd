@@ -1,0 +1,70 @@
+---
+title: "Report"
+author: "Jamie Stankiewiz"
+date: "October 4, 2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+
+
+load("~/pandoc-test/stat159/stat159-fall2016-hw02/data/regression.RData")
+library(xtable)
+
+```
+
+
+# Abstract
+
+
+
+
+This is a result of the least squares regression fit of Sales on TV from the Advertising data set. 
+
+![](../images/scatterplot-tv-sales.png)
+
+
+# Data
+This summary tables details out the estimated coefficients of the linear least squares line. Complete with a standard error of the estimates and t- and p- values. From this, we can conclude that $\hat \beta_0$ and $\hat \beta_1$ are not equal to 0. 
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & Coefficient & Std. Error & t-statistic & p-value \\ 
+  \hline
+Intercept & 7.03 & 0.46 & 15.36 & 0.00 \\ 
+  TV & 0.05 & 0.00 & 17.67 & 0.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+
+This marks the code of the actual summary output in R.  These are the details of the regression line.
+
+```{r, echo=FALSE}
+
+summary
+
+
+values <- c(summary$sigma, summary$r.squared, as.vector(summary$fstatistic[1]))
+rownames<- c('Residual standard error','R^2', 'Fstatistic')
+table <- as.table(matrix(c(rownames,round(values,3)), nrow=3,ncol=2, dimnames=list(NULL, c('Quantity','Values'))))
+
+```
+
+
+The content in this table displays 3 things.  First, the residual standard error, or $RSE$ which is the estimated standard error of errors, $\epsilon$, describing the so-called "lack of fit" of the model.  The second term, $R^2$ explains how much of the variability was due to the regression.  This is on a scale of 0 to 1.  The last term is the F-statistic, is the test statistic of running an ANOVA hypothesis test to find if the means of the two categories are the same or not.  In this case, our F-statistic corresponds to a p-value of <<0.000001, so therefore you can safely reject the null hypothesis, $H_0$.
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rll}
+  \hline
+ & Quantity & Values \\ 
+  \hline
+A & Residual standard error & 3.259 \\ 
+  B & $R^2$ & 0.612 \\ 
+  C & $F$-statistic & 312.145 \\ 
+   \hline
+\end{tabular}
+\end{table}
