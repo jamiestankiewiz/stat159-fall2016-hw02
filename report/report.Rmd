@@ -23,20 +23,30 @@ library(xtable)
 
   We examine a simple linear regression model.  We will look at the data from the book "An Introduction to Statistical Learning" by James et al.  We will specifically look at the plot of TV vs. Sales and take a look at the regression line.  We are particularly interested in the data for the regression residuals, including intercept and slope, more commonly known as the coefficients of the regression line, as we look at the strength of the line.  In addition, we will also examine the $R^2$ statistic as a measure of the linear relationship between TV and Sales, as well as the F-statistic, which is part of the ANOVA hypothesis test.
 
+\begin{center}
 
-This is a result of the least squares regression fit of Sales on TV from the Advertising data set. 
+Figure 1: This is a result of the least squares regression fit of Sales on TV from the Advertising data set. 
+\end{center}
+
 
 ![](../images/scatterplot-tv-sales.png)
 
 
 
 
+
+
 # Data
 
-The data set, Advertising.csv contains data for `r colnames(ad)[2:length(ad)]`. 
+The data set, Advertising.csv contains data for TV, Radio, Newspaper, and Sales. 
 
 This summary tables details out the estimated coefficients of the linear least squares line. Complete with a standard error of the estimates as well as the t- and p- values. From this, we can conclude that $\hat \beta_0$ and $\hat \beta_1$ are not equal to 0. 
 
+
+\begin{center}
+
+Table 1: Coefficients of the regression line of the least squares model.
+\end{center}
 
 
 \begin{table}[ht]
@@ -57,6 +67,13 @@ This marks the code of the actual summary output in R.  These are the details of
 
 The content in this table displays 3 things.  First, the residual standard error, or $RSE$ which is the estimated standard error of errors, $\epsilon$, describing the so-called "lack of fit" of the model.  The second term, $R^2$ explains how much of the variability was due to the regression.  This is on a scale of 0 to 1.  The last term is the F-statistic, is the test statistic of running an ANOVA hypothesis test to find if the means of the two categories are the same or not.  In this case, our F-statistic corresponds to a p-value of <<0.000001, so therefore you can safely reject the null hypothesis, $H_0$.
 
+
+\begin{center}
+
+Table 2: More information of the least squares model.
+\end{center}
+
+
 \begin{table}[ht]
 \centering
 \begin{tabular}{rll}
@@ -74,7 +91,7 @@ A & Residual standard error & 3.259 \\
 
 # Methodology
 
-We will first look at our data set, advertising.csv to look at the varibales used.  `r colnames(ad)[2:5]` are the variables we get by looking at the column names of our data sheet.  We then wish to look at the relationship between TV and Sales.  To do so, we first generate a scatterplot of the 2 against each other.  Next, we create the regression line using the lm() function of the data. To get these estimates of the coefficients, we look at the outputs of the lm() function to see the statistics of the regression line (as shown below).  
+We will first look at our data set, advertising.csv to look at the varibales used.  TV, Radio, Newspaper and Sales are the variables we get by looking at the column names of our data sheet.  We then wish to look at the relationship between TV and Sales.  To do so, we first generate a scatterplot of the 2 against each other.  Next, we create the regression line using the lm() function of the data. To get these estimates of the coefficients, we look at the outputs of the lm() function to see the statistics of the regression line (as shown below).  
 
 
 ```{r, echo=FALSE}
